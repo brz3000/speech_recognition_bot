@@ -1,44 +1,22 @@
 import os
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import vk_api
+from vk_api.longpoll import VkLongPoll, VkEventType
 from dotenv import load_dotenv
-from google.cloud import dialogflow_v2beta1 as dialogflow
-
-
-def start(update, context):
-    first_mame = update.message.from_user.first_name
-    last_name = update.message.from_user.last_name
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Здравствуйте, {first_mame} {last_name}!")
-
-
-def reply(update, context):
-    project_id = os.environ['GOOGLE_PROJECT_ID']
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text = detect_intent_texts(project_id,
-                                                        update.effective_chat.id,
-                                                        update.message.text))
-
-
-def detect_intent_texts(project_id, session_id, text, language_code = "ru"):
-    session_client = dialogflow.SessionsClient()
-    session = session_client.session_path(project_id, session_id)
-    text_input = dialogflow.TextInput(text=text, language_code=language_code)
-    query_input = dialogflow.QueryInput(text=text_input)
-    response = session_client.detect_intent(
-        request={"session": session, "query_input": query_input}
-    )
-    return response.query_result.fulfillment_text
 
 
 def main():
     load_dotenv()
-    TOKEN = os.environ['TLG_BOT']
-    updater = Updater(token=TOKEN, use_context=True)
-    dispatcher = updater.dispatcher
-
-    start_handler = CommandHandler("start", start)
-    dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(MessageHandler(Filters.text, reply))
-    updater.start_polling()
+    vk_session = vk_api.VkApi(token=os.environ['VK_GROUP_ACCESS_TOKEN'])
+    longpoll = VkLongPoll(vk_session)
+    print (longpoll.listen())
+    for event in longpoll.listen():
+        if event.type == VkEventType.MESSAGE_NEW:
+            print('Новое сообщение:')
+            if event.to_me:
+                print('Для меня от: ', event.user_id)
+            else:
+                print('От меня для: ', event.user_id)
+            print('Текст:', event.text)
 
 
 if __name__ == '__main__':
