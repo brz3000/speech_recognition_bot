@@ -1,4 +1,6 @@
 #file
+questions.json
+tg_echo_bot.py
 dialogflow.py
 create_api_key.py
 
