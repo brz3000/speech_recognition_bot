@@ -4,6 +4,7 @@ import vk_api as vk
 from vk_api.longpoll import VkLongPoll, VkEventType
 from dotenv import load_dotenv
 from google.cloud import dialogflow_v2beta1 as dialogflow
+from time import sleep
 
 
 def detect_intent_texts(project_id, session_id, texts, language_code = "ru"):
@@ -39,9 +40,14 @@ def main():
     vk_session = vk.VkApi(token=os.environ['VK_GROUP_ACCESS_TOKEN'])
     vk_api = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
-    for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            message_reply(event, vk_api, project_id)
+    while True:
+        try:
+            for event in longpoll.listen():
+                if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+                    message_reply(event, vk_api, project_id)
+        except Exception as ex:
+            print(ex)
+            sleep(30)
 
 
 if __name__ == '__main__':
