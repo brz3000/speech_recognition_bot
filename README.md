@@ -24,6 +24,8 @@ pip install -r requirement.txt
 * VK_USER_ID= -id пользователя vkontakte
 * VK_GROUP_ID= -id группы вконтакте
 * VK_GROUP_ACCESS_TOKEN= -токен группы вконтакте
+* TLG_TOKEN_LOGGER_BOT= -токен телеграм бота, который присылает логи, узнать можно у @BotFather.
+* TLG_CHAT_ID= id чата с ботом. Узнать можно написав @userinfobot
 
 ## Пример запуска скрипта
 ```bash
