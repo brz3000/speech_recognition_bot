@@ -29,7 +29,7 @@ pip install -r requirement.txt
 
 ## Пример запуска скрипта
 ```bash
-python main.py
+python vk_dialogflow_bot.py
 ```
 
 Для проверки результата нужно написать сообщение в группу VK_GROUP_ID.
