@@ -27,9 +27,13 @@ pip install -r requirement.txt
 * TLG_TOKEN_LOGGER_BOT= -токен телеграм бота, который присылает логи, узнать можно у @BotFather.
 * TLG_CHAT_ID= id чата с ботом. Узнать можно написав @userinfobot
 
+  
+
 ## Пример запуска скрипта
 ```bash
 python vk_dialogflow_bot.py
 ```
 
 Для проверки результата нужно написать сообщение в группу VK_GROUP_ID.
+
+![vk_dialogflow](https://github.com/brz3000/speech_recognition_bot/assets/45814758/57d22e23-13b9-43d4-8ea5-7b5c3fac6b94)
