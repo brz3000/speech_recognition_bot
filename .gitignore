@@ -1,6 +1,4 @@
 #file
-questions.json
-dialogflow.py
 create_api_key.py
 
 # Byte-compiled / optimized / DLL files
