@@ -7,7 +7,8 @@ from detect_itent import detect_intent_texts
 def start(update, context):
     first_mame = update.message.from_user.first_name
     last_name = update.message.from_user.last_name
-    context.bot.send_message(chat_id=update.effective_chat.id, text=f"Здравствуйте, {first_mame} {last_name}!")
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text=f"Здравствуйте, {first_mame} {last_name}!")
 
 
 def reply(update, context):
