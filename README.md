@@ -1,12 +1,12 @@
-# Vk Чат-Бот с интегрированным DialogFlow.
+# Vk и Telegram Чат-Бот с интегрированным DialogFlow.
  Бот использует API DialogFlow
 
 ## Описание
-С помощью данного чат-бота можно организовать службу поддержки, которая отвечает на частозадаваемые вопросы пользователей 
+С помощью данных чат-ботов можно организовать службу поддержки, которая отвечает на часто задаваемые вопросы пользователей 
 
 ## Требования
 Для работы должен быть установлен python3. А также необходимо установить библиотеки, python-dotenv, 
-google-cloud-dialogflow, vk_api  которые описаны в файле requirements.txt
+google-cloud-dialogflow, vk_api и python-telegram-bot которые описаны в файле requirements.txt
 Чтобы установить python3 скачайте и ознакомьтесь с инструкцией по установке на сайте [python.org](https://www.python.org/downoloads)
 
 ## Установка
@@ -29,11 +29,16 @@ pip install -r requirement.txt
 
   
 
-## Пример запуска скрипта
+## Пример запуска VK-бота 
 ```bash
 python vk_bot.py
 ```
 
-Для проверки результата нужно написать сообщение в группу VK_GROUP_ID.
+
+## Пример запуска Telegram-бота 
+```bash
+python tg_bot.py
+```
+Для проверки результата нужно написать сообщение в группу VK_GROUP_ID или в телеграм боту https://t.me/dvmn_brz_notify_bot.
 
 ![vk_dialogflow](https://github.com/brz3000/speech_recognition_bot/assets/45814758/57d22e23-13b9-43d4-8ea5-7b5c3fac6b94)
