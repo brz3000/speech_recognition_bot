@@ -16,7 +16,7 @@ def reply(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text=detect_intent_texts(project_id,
                                                       update.effective_chat.id,
-                                                      update.message.text))
+                                                      update.message.text)[1])
 
 
 def main():
