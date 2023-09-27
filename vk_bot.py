@@ -25,14 +25,14 @@ class TelegramLogsHandler(logging.Handler):
 
 
 def message_reply(event, vk_api, project_id):
-    itent_found = detect_intent_texts(project_id,
-                                      event.user_id,
-                                      event.text,
-                                      language_code="ru")
-    if itent_found:
+    dialogflow_answer = detect_intent_texts(project_id,
+                                              event.user_id,
+                                              event.text,
+                                              language_code="ru")
+    if dialogflow_answer[0] != "input.unknown":
         vk_api.messages.send(
             user_id=event.user_id,
-            message=itent_found,
+            message=dialogflow_answer[1],
             random_id=random.randint(1, 1000)
         )
 
