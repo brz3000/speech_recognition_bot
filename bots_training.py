@@ -4,8 +4,9 @@ import os
 import json
 
 
-def read_json(file_name):
-    with open(file_name, "r") as my_file:
+def read_json(file_path,file_name):
+    full_filename = os.path.join(file_path,file_name)
+    with open(full_filename, "r") as my_file:
         intents_json = my_file.read()
     intents = json.loads(intents_json)
     return intents
@@ -38,7 +39,8 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 def main():
     load_dotenv()
     project_id = os.environ['GOOGLE_PROJECT_ID']
-    itents = read_json(os.getenv("QUESTIONS_FILENAME"))
+    itents = read_json(os.getenv("QUESTIONS_PATH", os.getcwd())
+                        ,os.getenv("QUESTIONS_FILENAME", 'questions.json'))
     for itent_name, itent_cotnent in itents.items():
         texts = itent_cotnent['questions']
         answer = [itent_cotnent['answer']]
