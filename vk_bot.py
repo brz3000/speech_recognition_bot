@@ -29,10 +29,11 @@ def message_reply(event, vk_api, project_id):
                                               event.user_id,
                                               event.text,
                                               language_code="ru")
-    if dialogflow_answer[0] != "input.unknown":
+    action, reply = dialogflow_answer
+    if action != "input.unknown":
         vk_api.messages.send(
             user_id=event.user_id,
-            message=dialogflow_answer[1],
+            message=reply,
             random_id=random.randint(1, 1000)
         )
 
