@@ -38,11 +38,11 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 def main():
     load_dotenv()
     project_id = os.environ['GOOGLE_PROJECT_ID']
-    itents = read_json("questions.json")
-    for itent in itents:
-        texts = itents[itent]['questions']
-        answer = [itents[itent]['answer']]
-        create_intent(project_id, itent, texts, answer)
+    itents = read_json(os.getenv("QUESTIONS_FILENAME"))
+    for itent_name, itent_cotnent in itents.items():
+        texts = itent_cotnent['questions']
+        answer = [itent_cotnent['answer']]
+        create_intent(project_id, itent_name, texts, answer)
 
 
 if __name__ == '__main__':
